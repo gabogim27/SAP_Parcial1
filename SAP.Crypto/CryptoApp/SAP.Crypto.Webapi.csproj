@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data\SAP.Crypto.Repository.csproj" />
     <ProjectReference Include="..\Domain\SAP.Crypto.Domain.csproj" />
+    <ProjectReference Include="..\Repository\SAP.Crypto.Services.csproj" />
   </ItemGroup>
 
 

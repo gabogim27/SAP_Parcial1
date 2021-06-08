@@ -14,7 +14,7 @@
 
         IEnumerable<T> List();
 
-        void Update(T entity);
+        bool Update(T entity);
 
         void Update(IList<T> entities);
 
@@ -23,5 +23,7 @@
         void Delete(IList<T> entities);
 
         IEnumerable<T> Where(Expression<Func<T, bool>> predicate);
+
+        T FirstOrDefault(Expression<Func<T, bool>> predicate);
     }
 }

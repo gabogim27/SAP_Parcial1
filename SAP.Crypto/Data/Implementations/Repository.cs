@@ -45,10 +45,16 @@
             return Set.Find(keyValues);
         }
 
+        public T FirstOrDefault(Expression<Func<T, bool>> predicate)
+        {
+            return Set.FirstOrDefault(predicate);
+        }
+
         public void Save(T entity)
         {
             Set.Add(entity);
             Context.SaveChanges();
+            //Context.Entry(entity).State = EntityState.Detached;
         }
 
         public void Save(IList<T> entities)
@@ -56,13 +62,14 @@
             foreach (var entity in entities)
             {
                 Save(entity);
+                //Context.Entry(entity).State = EntityState.Detached;
             }
         }
 
-        public void Update(T entity)
+        public bool Update(T entity)
         {
             Context.Update(entity);
-            Context.SaveChanges();
+            return Context.SaveChanges() > 0;
         }
 
         public void Update(IList<T> entities)

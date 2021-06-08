@@ -9,6 +9,8 @@ using Microsoft.OpenApi.Models;
 using SAP.Crypto.Domain.Implementation;
 using SAP.Crypto.Repository.Implementations;
 using SAP.Crypto.Repository.Interfaces;
+using SAP.Crypto.Services.Interfaces;
+using Services.Implementations;
 
 namespace CryptoApp
 {
@@ -41,12 +43,27 @@ namespace CryptoApp
                 });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    name: "AllowOrigin",
+                    builder => {
+                        builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+
             services.AddDbContext<DatabaseContext>(opt => opt.UseInMemoryDatabase("CriptoApp"));
             services.AddScoped<DbContext, DatabaseContext>();
             services.AddTransient(typeof(IRepository<Transaction>), typeof(Repository<Transaction>));
             services.AddTransient(typeof(IRepository<BankAccount>), typeof(Repository<BankAccount>));
             services.AddTransient(typeof(IRepository<CryptoAccount>), typeof(Repository<CryptoAccount>));
             services.AddTransient(typeof(IRepository<Customer>), typeof(Repository<Customer>));
+            services.AddTransient(typeof(IRepository<Bank>), typeof(Repository<Bank>));
+            services.AddTransient(typeof(IRepository<Currency>), typeof(Repository<Currency>));
+
+            services.AddTransient(typeof(IAccountService), typeof(AccountService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,8 +75,10 @@ namespace CryptoApp
             }
 
             app.UseHttpsRedirection();
+            app.UseDeveloperExceptionPage();
 
             app.UseRouting();
+            app.UseCors("AllowOrigin");
 
             app.UseAuthorization();
 

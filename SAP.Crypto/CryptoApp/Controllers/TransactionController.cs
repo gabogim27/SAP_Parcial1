@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Data;
-using Domain;
-namespace CryptoApp.Controllers
+﻿namespace CryptoApp.Controllers
 {
+    using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
     using SAP.Crypto.Repository.Interfaces;
     using System.Transactions;
 
@@ -14,20 +9,18 @@ namespace CryptoApp.Controllers
     [Route("[controller]")]
     public class TransactionController : ControllerBase
     {
-        private readonly IRepository<Transaction> repository;
+        //public TransactionController(IRepository<Transaction> repository)
+        //{
+        //    this.repository = repository;
+        //}
 
-        public TransactionController(IRepository<Transaction> repository)
-        {
-            this.repository = repository;
-        }
-
-        [HttpGet]
-        [Route("transactions")]
-        [Produces(typeof(IEnumerable<Transaction>))]
-        public IActionResult GetTransactions()
-        {
-            var transactions = repository.List();
-            return Ok(transactions);
-        }
+        //[HttpGet]
+        //[Route("transactions")]
+        //[Produces(typeof(IEnumerable<Transaction>))]
+        //public IActionResult GetTransactions()
+        //{
+        //    var transactions = repository.List();
+        //    return Ok(transactions);
+        //}
     }
 }

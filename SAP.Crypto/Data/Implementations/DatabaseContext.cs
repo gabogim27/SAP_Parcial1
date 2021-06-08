@@ -12,12 +12,11 @@
         public DbSet<BankAccount> BankAccount { get; set; }
         public DbSet<CryptoAccount> CryptoAccount { get; set; }
         public DbSet<Customer> Customer { get; set; }
-
+        public DbSet<Currency> Currency { get; set; }
 
         public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,5 +1,6 @@
 ﻿namespace SAP.Crypto.Domain.Implementation
 {
+    using System.ComponentModel.DataAnnotations;
     public class Customer
     {
         public int CustomerId { get; set; }

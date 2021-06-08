@@ -4,6 +4,7 @@
     {
         ARS,
         Dollars, 
-        Crypto
+        Crypto,
+        ARSAndDollars
     }
 }
